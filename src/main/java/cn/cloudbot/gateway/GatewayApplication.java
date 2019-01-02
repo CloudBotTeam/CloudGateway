@@ -39,7 +39,9 @@ public class GatewayApplication {
 //								.addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
 						.uri("http://localhost:8101/test/ip")
 
-				)
+				).route(r-> r.path("/robots/**").uri("http://localhost:8101/robots"))
+				.route(r->r.path("/groups/**").uri("http://localhost:8102/groups"))
+				.route(r->r.path("/services/**").uri("http://localhost:8102/services"))
 				.build();
 		// @formatter:on
 	}
