@@ -22,6 +22,10 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
+	private String BotManagerAddress;
+
+	private String ServiceManagerAddress;
+
 	@Bean
 	public RouterFunction<ServerResponse> testFunRouterFunction() {
 		RouterFunction<ServerResponse> route = RouterFunctions.route(
