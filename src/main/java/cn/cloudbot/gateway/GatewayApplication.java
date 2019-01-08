@@ -1,8 +1,10 @@
 package cn.cloudbot.gateway;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -28,6 +30,9 @@ public class GatewayApplication {
 
 	private String ServiceManagerAddress;
 
+	@Autowired
+	private DiscoveryClient client;
+
 	@Bean
 	public RouterFunction<ServerResponse> testFunRouterFunction() {
 		RouterFunction<ServerResponse> route = RouterFunctions.route(
@@ -45,9 +50,9 @@ public class GatewayApplication {
 //								.addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
 						.uri("http://localhost:8101/test/ip")
 
-				).route(r-> r.path("/robots/**").uri("http://localhost:8101/robots"))
-				.route(r->r.path("/groups/**").uri("http://localhost:8102/groups"))
-				.route(r->r.path("/services/**").uri("http://service-manager/services"))
+				).route(r-> r.path("/robots/**").uri("http://bot-manager:8101/robots"))
+				.route(r->r.path("/groups/**").uri("http://service-manager:8102/groups"))
+				.route(r->r.path("/services/**").uri("http://service-manager:8102/services"))
 				.build();
 		// @formatter:on
 	}
