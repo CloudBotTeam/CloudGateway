@@ -47,7 +47,7 @@ public class GatewayApplication {
 
 				).route(r-> r.path("/robots/**").uri("http://localhost:8101/robots"))
 				.route(r->r.path("/groups/**").uri("http://localhost:8102/groups"))
-				.route(r->r.path("/services/**").uri("http://localhost:8102/services"))
+				.route(r->r.path("/services/**").uri("http://service-manager/services"))
 				.build();
 		// @formatter:on
 	}
