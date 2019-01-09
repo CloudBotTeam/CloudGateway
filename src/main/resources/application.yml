@@ -6,16 +6,17 @@ eureka:
 spring:
   application:
     name: cloud-gateway
-  cloud:
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-            - GET
-            - POST
-            - DELETE
+#  cloud:
+#    gateway:
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#            - GET
+#            - POST
+#            - DELETE
+#            - OPTIONS
 
 server:
   port: 8120
